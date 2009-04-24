@@ -1,0 +1,21 @@
+# Release manifest for SoftSkin
+data/System/SoftSkin.txt 0644 Documentation
+lib/Foswiki/Contrib/SoftSkin.pm 0644 Perl module
+data/System/SoftSkin.txt
+lib/Foswiki/Contrib/SoftSkin.pm
+pub/System/SoftSkin/layout.css
+pub/System/SoftSkin/style.css
+templates/addform.soft.tmpl
+templates/attach.soft.tmpl
+templates/attachagain.soft.tmpl
+templates/attachnew.soft.tmpl
+templates/attachtables.soft.tmpl
+templates/changeform.soft.tmpl
+templates/edit.soft.tmpl
+templates/form.soft.tmpl
+templates/formtables.soft.tmpl
+templates/foswiki.soft.tmpl
+templates/login.soft.tmpl
+templates/view.soft.tmpl
+templates/viewtopicactionbuttons.soft.tmpl
+

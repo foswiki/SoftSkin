@@ -1,0 +1,81 @@
+
+
+/* CSS Document */
+* {margin:0;padding:0}
+p {margin-bottom:1em}
+ul{margin-left:20px;margin-bottom:1em}
+/* commented backslash hack v2 \*/ 
+html, body{height:100%;} 
+/* end hack */ 
+
+body {
+border-width:0px !important;
+/*remove the body background image as it is broken on most browsers*/
+background-image: none !important;
+}
+#outer{
+	/*
+	margin-left:130px; 
+	margin-right:130px; 
+	*/
+	/*
+	border-left:1px solid #000;
+	border-right:1px solid #000;
+	*/
+	margin-bottom:-52px;
+	min-height:100%;
+	/*border-width:0px;	*/
+	border-top:0px;
+	border-bottom:0px;
+}
+
+#header{
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:70px;
+/*	
+	border-top:1px;
+	border-bottom:1px;
+*/
+	/*Prevents horizontal scroll*/
+	border-left:0px;
+	border-right:0px;
+	overflow:hidden;
+}
+
+#footer {
+	width:100%;
+	clear:both;
+	height:50px;	
+	/*
+	border-top:1px solid;
+	border-bottom:1px solid;
+	*/
+	/*Prevents horizontal scroll*/
+	border-left:0px;
+	border-right:0px;
+	/*text-align:center;*/
+	position:relative;
+}
+#clearheader{height:72px;}/*needed to make room for header*/
+#clearfooter{clear:both;height:52px;}/*needed to make room for footer*/
+* > html #clearfooter {float:left;width:100%;}/* ie mac styles */
+#content {
+	width:100%;
+	float:left;
+	position:relative;
+	z-index:1;
+	margin:0 -1px;/* moz fix*/
+}
+
+html>body #minHeight{float:right;width:0px;height:100%;margin-bottom:-52px;} /*safari wrapper */
+
+/*SL: most important to make sure our global forms do not break our layout*/
+form {
+	display:inline;
+	margin:0;
+	padding:0;
+}
+

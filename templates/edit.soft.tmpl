@@ -1,0 +1,70 @@
+%TMPL:INCLUDE{"edit"}%
+
+%TMPL:DEF{"script:skintemplate"}%%IF{"not context TinyMCEPluginEnabled or $nowysiwyg='1'" then='$percntTMPL:P{\"script:skintemplate:edit\"}$percnt'}%%TMPL:END%
+
+%TMPL:DEF{"script:skintemplate:edit"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswikiPref.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswiki_edit.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/SlionSkin/slion_edit.js"></script>
+<script type="text/javascript">
+foswiki.Event.addLoadEvent(initForm);
+</script>%TMPL:END%
+
+%TMPL:DEF{"bodyclassname"}%%CSS{body}% slionNoViewPage slionEditPage%TMPL:END%
+
+
+%TMPL:DEF{"formstart"}%<form name="main" action="%SCRIPTURLPATH{"save"}%/%WEB%/%TOPIC%" method="post" onsubmit="return validateMandatoryFields(event)">%TMPL:END%
+
+
+
+%TMPL:DEF{"revCommentPluginOptions"}%%IF{ "context RevCommentPluginEnabled" then="<div class='revComment'><label for='comment'>Summary of changes</label> <input class='foswikiInputField' type='text' style='width:50%' name='comment' id='comment' /> <a target='RevComment' class='foswikiPopUp' href='%SCRIPTURL{"view"}%/%SYSTEMWEB%/RevComment' rel='nofollow'>%MAKETEXT{"help"}%</a></div><!--/revComment-->" else=""}%%TMPL:END%
+
+
+%TMPL:DEF{"forcerevisioncheckbox"}%<input type="checkbox" class="%CSS{checkbox}%" title="Creates a new topic revision when saving" id="forcenewrevision" name="forcenewrevision" %FORCENEWREVISIONCHECKBOX% /><label for="forcenewrevision">%MAKETEXT{"New revision"}%</label> <a class="foswikiPopUp" href="%SCRIPTURL{"view"}%/%SYSTEMWEB%/ForceNewRevision" target="ForceNewRevision" rel='nofollow' title='%MAKETEXT{"Read new revision help text in new window"}%'>%MAKETEXT{"help"}%</a>%TMPL:END%
+
+
+%TMPL:DEF{"saveoptions"}%<div class="slionSaveOptions">%TMPL:P{"forcerevisioncheckbox"}%</div><!--/slionSaveOptions-->%TMPL:END%
+
+%TMPL:DEF{"edit_toolbar"}%%TMPL:P{"button_save"}%%TMPL:P{"button_checkpoint"}%%TMPL:P{"button_addfrom"}%%TMPL:P{"button_cancel"}%%TMPL:END%
+
+%{ We have both input button and button element. We use button to be able to show accesskey. Input button element should be hidden by style.css }%
+%TMPL:DEF{"button_save"}%<button type="submit" name="action_save" value="1" class="%CSS{button-primary}%" %MAKETEXT{"title='Save your modifications' accesskey='s'>&Save"}%</button>%TMPL:END%
+%TMPL:DEF{"button_checkpoint"}%<button type="submit" name="action_checkpoint" value="1" class="%CSS{button}%" %MAKETEXT{"title='Save and continue editing' accesskey='e'>Continu&e"}%</button>%TMPL:END%
+%TMPL:DEF{"button_cancel"}%<button type="submit" name="action_cancel" value="1" onclick="suppressSaveValidation()" class="%CSS{button-cancel}%" %MAKETEXT{"title='Cancel editing and discard changes' accesskey='c'>&Cancel"}%</button>%TMPL:END%
+%TMPL:DEF{"button_addfrom"}%<button type="submit" name="action_addform" value="1" class="%CSS{button}%" %MAKETEXT{"title='Choose a data form' accesskey='f'>&Form"}%</button>%TMPL:END%
+%{ TODO: we don't use quietsave and preview for now so we did not bother adding them button element. It should be done at some point though. }%
+%TMPL:DEF{"button_quietsave"}%<input type="submit" class="%CSS{button}%" name="action_quietsave" id="quietsave" %MAKETEXT{"value='Quiet save' accesskey='q'"}% />%TMPL:END%
+%TMPL:DEF{"button_preview"}%<input type="submit" class="%CSS{button}%" name="action_preview" id="preview" %MAKETEXT{"value='Preview' accesskey='p'"}% onclick="enableTWikiMandatoryChecks()" />%TMPL:END%
+
+
+
+%TMPL:DEF{"topicinfo"}%<div>%TMPL:P{"revCommentPluginOptions"}%%TMPL:P{"saveoptions"}%</div>%TMPL:END%
+
+%{ TODO: put back that help stuff in the content once it looks good }%
+%TMPL:DEF{"togglehelp"}%<div class="patternTop">%TWISTYBUTTON{id="edithelp" mode="div" remember="on" showlink="<h3>&#9658; %MAKETEXT{"Edit help"}%</h3>" hidelink="<h3>&#9660; %MAKETEXT{"Edit help"}%</h3>" linkclass="foswikiButton patternTwistyButton"}%</div><!--//patternTop-->%TMPL:END%
+%TMPL:DEF{"pagehelp"}%%TWISTYTOGGLE{id="edithelp" mode="div" remember="on" noscript="hide"}%<div class="foswikiHelp">%TMPL:P{"help"}%%TMPL:P{"actionbuttons_help"}%</div>%ENDTWISTYTOGGLE%%TMPL:END%
+
+
+%TMPL:DEF{"textarea"}%<textarea class="%CSS{text-area}%" id="topic" name="text" rows="%EDITBOXHEIGHT%" cols="%EDITBOXWIDTH%" style='%EDITBOXSTYLE%' onkeydown='handleKeyDown(event)'>%TEXT%</textarea>%TMPL:P{"sig_textareabuttons"}%%TMPL:END%
+
+
+%TMPL:DEF{"sig_textareabuttons"}%%IF{"not context TinyMCEPluginEnabled or $nowysiwyg='1'" then='%TMPL:P{"textareabuttons"}%'}%%TMPL:P{"sig"}%<br class="%CSS{clear}%" />%TMPL:END%
+
+
+%TMPL:DEF{"sig"}%<input class="%CSS{text-input}% %CSS{disabled}%" size="41" name="sig" type="text" readonly="readonly" title='%MAKETEXT{"Select, copy and paste your signature text to the bottom of your entry"}%' id="sig" value="-- <nop>%WIKIUSERNAME% - %DATE%" /> <label for="sig" class="foswikiGrayText">%MAKETEXT{"Your signature to copy/paste"}%&nbsp;&nbsp;</label>%TMPL:END%
+
+
+%{SL: Define edit mode tool bar }%
+%TMPL:DEF{"toolbar"}%%TMPL:P{"edit_toolbar"}%%TMPL:END%
+
+%{SL: define global form}%
+%TMPL:DEF{"top"}%%TMPL:P{"formstart"}%%TMPL:END%
+%TMPL:DEF{"bottom"}%%TMPL:P{"formend"}%%TMPL:END%
+
+%{ Override page title }%
+%TMPL:DEF{"pagetitle"}%(Edit) - %TOPIC% - %WEB% - %WIKITOOLNAME%%TMPL:END%
+
+%{SL: entry point}%
+%TMPL:DEF{"content"}%
+%TMPL:P{"textarea"}%
+%TMPL:P{"topicinfo"}%
+%TMPL:P{"form"}%%TMPL:END%

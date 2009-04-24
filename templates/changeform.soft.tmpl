@@ -1,0 +1,18 @@
+%TMPL:INCLUDE{"changeform"}%
+%TMPL:INCLUDE{"viewtopicactionbuttons"}%
+
+%{ Define our tool bar }%
+%TMPL:DEF{"changeform_toolbar"}%%TMPL:P{"input_select"}%%TMPL:P{"button_back"}%%TMPL:END%
+
+%{Change tool bar }%
+%TMPL:DEF{"toolbar"}%%TMPL:P{"changeform_toolbar"}%%TMPL:END%
+%{SL: define global form}%
+%TMPL:DEF{"top"}%%TMPL:P{"formstart"}%%TMPL:END%
+%TMPL:DEF{"bottom"}%%TMPL:P{"formend"}%%TMPL:END%
+
+%TMPL:DEF{"content"}%%TMPL:P{"notes"}%
+---+++ %MAKETEXT{"Choose a form"}%   
+%FORMLIST%
+%TEXT% %EDITACTION%
+%TMPL:P{"hiddenformfields"}%
+%TMPL:END%

@@ -1,0 +1,25 @@
+%{ These templates define the form attached at the bottom of viewed page. }%
+
+
+%{ Start of form table }%
+%TMPL:DEF{FORM:display:header}%<div class="%CSS{data-form}%"><div class='%CSS{table}%'>%IF{"context preview" then="%TMPL:P{FORM:display:titlename}%" else="%TMPL:P{FORM:display:titlelink}%"}%%TMPL:P{FORM:display:header:headerrow}%%TMPL:END%
+
+%{ Header }%
+%TMPL:DEF{FORM:display:header:headerrow}%%TMPL:END%
+
+%{ Each row }%
+%TMPL:DEF{FORM:display:row}%%IF{"context preview" then="<noautolink>"}%<div class='%CSS{tr}%'><div class='%CSS{th}%'>%A_TITLE%</div><div class='%CSS{td}%'>%A_VALUE%</div></div>%IF{"context preview" then="</noautolink>"}%%TMPL:END%
+
+%TMPL:DEF{FORM:display:rowcontents}%%TMPL:END%
+
+%{ Footer }%
+%TMPL:DEF{FORM:display:footer}%</div></div><!-- /foswikiForm -->%TMPL:END%
+
+
+%TMPL:DEF{FORM:display:titlelink}%<div class='%CSS{caption}%'> %A_TITLE% %TMPL:P{FORM:display:editlink}%</div>%TMPL:END%
+
+
+%TMPL:DEF{FORM:display:titlename}%<noautolink><div class='%CSS{caption}%'>%A_TITLE%</div></noautolink> %TMPL:END%
+
+
+%TMPL:DEF{FORM:display:editlink}%<span class='foswikiSmall'><a href='%SCRIPTURL{edit}%/%WEB%/%TOPIC%?t=%GMTIME{$epoch}%;action=form'>%MAKETEXT{"edit"}%</a></span>%TMPL:END%

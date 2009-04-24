@@ -1,0 +1,11 @@
+%{ This is a default template }%
+
+%TMPL:DEF{"mandatory"}%<span class="%CSS{error-text}%">*</span> %MAKETEXT{"indicates mandatory fields"}% %TMPL:END%
+
+%TMPL:DEF{"repeatedformrows"}% %REPEAT%
+<div class="%CSS{tr}%"><div class="%CSS{th}%">%ROWTITLE%%ROWEXTRA%</div><div class="%CSS{td}%">%ROWVALUE%</div></div>%REPEAT%<div class="%CSS{tr}%"><div class="%CSS{th}%">%ROWVALUE%</div></div>%REPEAT% %TMPL:END%
+
+%TMPL:DEF{"formtail"}% %TMPL:P{context="mandatoryfields" then="mandatory"}% %TMPL:END%
+<div class="%CSS{data-form}%"><div class="%CSS{table}%">
+<div class="%CSS{caption}%">%FORMTITLE%</div>
+%TMPL:P{"repeatedformrows"}%</div>%TMPL:P{"formtail"}%</div>

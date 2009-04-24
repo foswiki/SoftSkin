@@ -1,0 +1,54 @@
+%{ Override separator we don't want any they suck }%
+%TMPL:DEF{"sep"}%%TMPL:END%
+
+%{ Left bar definition }%
+%TMPL:DEF{"left"}%<div id="left" class="%SLIONSKIN_CLASS_LEFT%">
+%IF{"istopic 'WebLeftBar'" then="$percntINCLUDE{$quot%WEB%.WebLeftBar$quot}$percnt" else="$percntINCLUDE{$quot%USERSWEB%.SiteLeftBar$quot}$percnt"}%
+</div>%TMPL:END%
+
+%{ Right bar definition }%
+%TMPL:DEF{"right"}%<div id="right" class="%SLIONSKIN_CLASS_RIGHT%">
+%IF{"istopic 'WebRightBar'" then="$percntINCLUDE{$quot%WEB%.WebRightBar$quot}$percnt" else="$percntINCLUDE{$quot%USERSWEB%.SiteRightBar$quot}$percnt"}%
+</div>%TMPL:END%
+
+%{ Header definition }%
+%TMPL:DEF{"header"}%<div id="header" class="%CSS{header}%">
+<div class="fw-header">%IF{"istopic 'WebHeader'" then="$percntINCLUDE{$quot%WEB%.WebHeader$quot}$percnt" else="$percntINCLUDE{$quot%USERSWEB%.SiteHeader$quot}$percnt"}%</div>
+<div class="fw-toolbar">%TMPL:P{"toolbar"}%</div>
+<div class="fw-username">[[%WIKIUSERNAME%][%WIKINAME%]]</div>
+</div>%TMPL:END%
+
+%{ Footer definition }%
+%TMPL:DEF{"footer"}%<div id="footer" class="%CSS{footer}%">
+<div class="fw-footer">%IF{"istopic 'WebFooter'" then="$percntINCLUDE{$quot%WEB%.WebFooter$quot}$percnt" else="$percntINCLUDE{$quot%USERSWEB%.SiteFooter$quot}$percnt"}%</div>
+<div class="fw-topicinfo">%REVINFO{web="%BASEWEB%" topic="%BASETOPIC%" format="$date, v$rev, $wikiusername"}%</div>
+</div>%TMPL:END%
+
+%{ top and bottom templates allow for page wide from for instance }%
+%TMPL:DEF{"top"}%%TMPL:END%
+%TMPL:DEF{"bottom"}%%TMPL:END%
+%{ Default toolbar is empty }%
+%TMPL:DEF{"toolbar"}%%TMPL:END%
+
+%TMPL:DEF{"pagetitle"}%%TOPIC% - %WEB% - %WIKITOOLNAME%%TMPL:END%
+
+
+%TMPL:DEF{"document"}%<!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.0//EN" "http://www.wapforum.org/DTD/xhtml-mobile10.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>%TMPL:P{"pagetitle"}%</title>
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<link href="%PUBURLPATH%/%SYSTEMWEB%/SoftSkin/layout.css" rel="stylesheet" type="text/css" />
+<link href="%PUBURLPATH%/%SYSTEMWEB%/SoftSkin/style.css" rel="stylesheet" type="text/css" />
+</head>
+<body class="%CSS{body}%" >%TMPL:P{"top"}%
+<div id="minHeight"></div>
+<div id="outer" >
+  <div id="clearheader"></div>
+  <div id="content">%TMPL:P{"content"}%</div>
+  <div id="clearfooter"></div>
+</div><!-- outer div -->
+%TMPL:P{"footer"}%%TMPL:P{"header"}%%TMPL:P{"bottom"}%
+</body></html>%TMPL:END%
+
+%TMPL:P{"document"}%

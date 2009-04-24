@@ -1,0 +1,62 @@
+%TMPL:INCLUDE{"view"}%
+%TMPL:INCLUDE{"viewtopicactionbuttons"}%
+%TMPL:INCLUDE{"viewtopbar"}%
+%TMPL:INCLUDE{"viewsidebar"}%
+%TMPL:DEF{"logo"}%%TMPL:END%
+
+%TMPL:DEF{"script:skintemplate"}%%IF{"defined raw" then='%TMPL:P{"script:skintemplate:viewraw"}%'}%%TMPL:END%
+
+%TMPL:DEF{"script:skintemplate:viewraw"}%<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswikiPref.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/JavascriptFiles/foswiki_edit.js"></script>
+<script type="text/javascript" src="%PUBURLPATH%/%SYSTEMWEB%/SlionSkin/slion_edit.js"></script>%TMPL:END%
+
+%TMPL:DEF{"top:toolbarbuttons"}%%TMPL:P{"activatable_edit_or_create"}%%TMPL:P{"activatable_attach"}%%TMPL:END%
+
+%TMPL:DEF{"home"}%%MAKETEXT{"Home"}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:separator"}%<span class='foswikiSeparator'>&gt;</span>%TMPL:END%
+
+%TMPL:DEF{"breadcrumb"}%%TMPL:P{"breadcrumb:wikitoolname"}%%TMPL:P{"breadcrumb:currentweb"}%%TMPL:P{"breadcrumb:parents"}%%TMPL:P{"breadcrumb:separator"}%%TOPIC%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:parents"}%%META{"parent" nowebhome="on" prefix="%TMPL:P{"breadcrumb:separator"}%" separator="%TMPL:P{"breadcrumb:separator"}%" suffix=""}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:topic"}%<nop>%TOPIC%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:wikitoolname"}%[[%USERSWEB%.%HOMETOPIC%][%WIKITOOLNAME%]]%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:currentweb"}%%TMPL:P{"breadcrumb:separator"}%<a href="%SCRIPTURLPATH{"view"}%/%WEB%/%HOMETOPIC%">%MAKETEXT{"[_1]" args="<nop>%WEB%"}%</a>%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:annotation"}%%IF{"defined rev" then=" %MAKETEXT{"(revision [_1])" args="%URLPARAM{"rev"}%"}%" else=" <span class='slionRevInfo'>(%REVINFO{format="$date, $wikiusername"}%)</span>"}%%IF{"defined raw" then=" %MAKETEXT{"(raw view)"}%"}%%TMPL:END%
+
+%TMPL:DEF{"breadcrumb:currenttopic"}%%TMPL:P{"breadcrumb:separator"}%<a href="%SCRIPTURL{view}%/%WEB%/%TOPIC%" title='%MAKETEXT{"Topic revision:"}% %REVINFO{format="$rev ($date - $time)"}%'>%TMPL:P{"breadcrumb:topic"}%</a>%TMPL:P{"breadcrumb:annotation"}%%TMPL:END%
+
+%{ DEPRECATED: beforetext and aftertext }%
+%{ compatibility transition older than 4.2: }%
+%TMPL:DEF{"contentheader"}%%TMPL:P{"beforetext"}%%TMPL:END%
+%TMPL:DEF{"contentfooter"}%%TMPL:P{"aftertext"}%%TMPL:END%
+
+%TMPL:DEF{"sliontopiccontents"}%%TMPL:P{"broadcastmessage"}%%TMPL:P{"top"}%%TMPL:P{"contentheaderstylewrapper"}%%TMPL:P{"formtop"}%%TMPL:P{"attachmentstop"}%<div class="slionContent"><div class="foswikiTopic">%TMPL:P{"content"}%</div><!-- /foswikiTopic-->
+%TMPL:P{"contentfooterstylewrapper"}%%TMPL:P{"formbottom"}%%TMPL:P{"attachmentsbottom"}%</div><!-- /slionContent-->
+%TMPL:P{"topicaction"}%%TMPL:P{"footernote"}%%TMPL:END%
+
+%TMPL:DEF{"standardheader"}%%TMPL:END%
+%TMPL:DEF{"simpleheader"}%%TMPL:P{"flashnote"}%%TMPL:P{"standardheader"}%%TMPL:END%
+
+%TMPL:DEF{"broadcastmessage"}%%IF{"defined BROADCASTMESSAGE and $BROADCASTMESSAGE != ''" then="$percntTMPL:P{$quotbroadcastmessage:contents$quot}$percnt"}%%TMPL:END%
+%TMPL:DEF{"broadcastmessage:contents"}%<div class="foswikiBroadcastMessage"> %BROADCASTMESSAGE% </div>%TMPL:END%
+
+%{SL: Define view mode tool bar }%
+%TMPL:DEF{"view_toolbar"}%%TMPL:P{"button_edit"}%%TMPL:P{"button_attach"}%%TMPL:P{"button_more"}%%TMPL:P{"button_logout"}%%TMPL:END%
+%{SL: Show the tool bar if authenticated otherwise just the login button. }%
+%{TODO: Handle more authorization scenario using 'inactive' context for instance. }%
+%TMPL:DEF{"toolbar"}%%TMPL:P{context="authenticated" then="view_toolbar" else="button_login"}%%TMPL:END%
+
+%{SL: Entry point}%
+%TMPL:DEF{"content"}%%TMPL:P{"breadcrumb"}%<p />%TEXT%%TMPL:P{"form"}%%TMPL:P{"attachments"}%%TMPL:END%
+
+%TMPL:DEF{"printaction"}%%TMPL:P{"activatable_printable"}%%TMPL:END%
+
+%TMPL:DEF{"footernote"}%%TMPL:END%
+%TMPL:DEF{"topicinfo"}%<div class="slionInfo foswikiGrayText"><div class="slionRevInfo">%REVINFO%</div><!-- /slionRevInfo--><div class="slionMoved">%META{"moved"}%</div><!-- /slionMoved--></div><!-- /slionInfo-->%TMPL:END%
+
+%TMPL:DEF{"sig_textareabuttons"}%<div class="slionSigLine">%TMPL:P{"textareabuttons"}%<br class="foswikiClear" /></div><!-- /slionSigLine-->%TMPL:END%

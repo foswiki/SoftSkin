@@ -1,0 +1,12 @@
+%META:TOPICINFO{author="BaseUserMapping_333" date="1240321349" format="1.1" reprev="1.10" version="1.10"}%
+
+---+ Soft Skin
+
+Skin prototype making use of JQuery UI themes.
+
+
+   * Set SKIN = soft
+
+   * Set SOFTSKIN_ICON_ALERT = <span class="ui-icon ui-icon-alert" style="float: left;margin-right: .3em; margin-top: 0.2em;"></span>
+
+   * Set SOFTSKIN_HELPER_CLEAR = <div class="ui-helper-clearfix"></div>

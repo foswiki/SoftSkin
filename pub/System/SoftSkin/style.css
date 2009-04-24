@@ -1,0 +1,192 @@
+
+/*
+.foswikiToc {
+	margin:1em 0;
+	padding:.3em 0 .6em 0;
+}
+.foswikiToc ul {
+	list-style:none;
+	padding:0 0 0 .5em;
+	margin:0;
+}
+.foswikiToc li {
+	margin-left:1em;
+	padding-left:1em;
+	background-repeat:no-repeat;
+	background-position:0 .5em;
+}
+.foswikiToc .foswikiTocTitle {
+	margin:0;
+	padding:0;
+	font-weight:bold;
+}
+*/
+
+.foswikiToc {
+/*display: inline;*/
+}
+
+li, ul{
+/* Fixes horizontal scroll issue on WebKit*/
+overflow:hidden;
+}
+
+
+/*
+SL: Newly added stuff 
+*/
+
+#content {	
+font-size: 0.8em;
+/*padding the content at the top and bottom*/
+padding-top: 1%;
+padding-bottom: 1%;
+}
+
+#outer {	
+/*padding the content left and right*/
+padding-left: 1%;
+padding-right: 1%;
+}
+
+#footer {
+font-size:0.5em;
+text-align:left;
+font-weight:lighter;
+}
+
+#footer > .fw-footer {
+/*No way to properly center that verticaly so we just use some padding*/
+padding-top: 2em;
+padding-left: 1em;
+/*float:left;*/
+}
+
+#footer > .fw-topicinfo {
+/*No way to properly center that verticaly so we just use some padding*/
+/*
+padding-top: 2em;
+padding-right: 1em;
+float:right;
+*/
+padding-left: 1em;
+}
+
+#header {
+font-size:1em;
+}
+
+/* Not useful anymore since we replaced our anchor with buttons*/
+#header > .fw-toolbar > input.fw-button{
+/*SL: find out why we need half the values from fw-button to make the buttons in 'edit' look similar to the ones from 'view'*/
+/*padding: .3em .6em;*/
+}
+/*Select tool bar in the header*/
+#header > .fw-toolbar {
+font-size: 0.6em;
+padding: 0.2em;
+padding-top: 0.8em;
+padding-right: 0.4em;
+/*
+text-align:right;
+vertical-align: top;
+position:absolute;
+top:1%;
+right:0;
+*/
+float:right;
+}
+
+#header > .fw-header {
+padding-top: 1em;
+padding-left: 1em;
+float:left;
+}
+
+#header > .fw-username {
+clear:right;
+font-size:0.6em;
+font-weight:normal;
+float:right;
+padding: .4em;
+margin:0 4px 0 0;
+}
+
+/*Show access key*/
+.foswikiAccessKey  {
+	font-weight:bold;
+	text-decoration:underline;
+	/*
+	border-width:0 0 1px 0;
+	border-style:solid;
+	*/
+}
+
+/*Show access key for primary button*/
+.ui-priority-primary  > .foswikiAccessKey {
+	font-weight:bold;
+	text-decoration:underline;
+}
+
+/*Topic data form*/
+.fw-data-form  {
+/*padding:1em;*/
+}
+
+/*Table*/
+.fw-table {
+display:table;
+border-collapse: collapse;
+}
+
+/*Table caption*/
+.fw-caption {
+padding:0.5em;
+display: table-caption;
+}
+
+/*Table row*/
+.fw-tr{
+padding:0.5em;
+display: table-row;
+}
+
+/*Table header and table data*/
+.fw-th, .fw-td {
+padding:0.5em;
+display: table-cell;
+}
+
+/*Text input and text area*/
+.fw-input{
+margin:0.2em;
+padding:0.1em;
+}
+
+/*Checkbox and radio button*/
+.fw-checkbox,
+.fw-radiobutton {
+	margin:0.1em .25em 1px .1em;
+	padding:0 0 0 .5em;	
+	border:0;
+}
+
+/*Display an error message*/
+.fw-error{
+	display: inline;
+	padding:0.8em;
+	float: left;	
+}
+
+/*Display an icon*/
+.fw-icon {
+
+/*
+float: left;
+margin-right: .3em;
+margin-top: 0.2em;
+*/
+}
+
+
+
