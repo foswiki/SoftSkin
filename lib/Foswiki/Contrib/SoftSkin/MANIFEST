@@ -1,8 +1,6 @@
 # Release manifest for SoftSkin
 data/System/SoftSkin.txt 0644 Documentation
 lib/Foswiki/Contrib/SoftSkin.pm 0644 Perl module
-data/System/SoftSkin.txt
-lib/Foswiki/Contrib/SoftSkin.pm
 pub/System/SoftSkin/layout.css
 pub/System/SoftSkin/style.css
 templates/addform.soft.tmpl
